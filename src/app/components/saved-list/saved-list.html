@@ -1,0 +1,17 @@
+<section class="saved">
+  <h2>המתכונים שלי ({{ service.count() }})</h2>
+<p>זמן הכנה כולל: {{ service.totalTime() }} דקות</p>
+
+  <p *ngIf="service.savedRecipes().length === 0">
+    אין עדיין מתכונים שמורים
+  </p>
+
+<div class="item" *ngFor="let r of service.savedRecipes()">
+  <strong>{{ r.name }}</strong>
+  <span>{{ r.category }}</span>
+  <span>{{ r.prepTime }} דקות</span>
+  <button (click)="service.remove(r.id)">הסר</button>
+</div>
+
+  <button (click)="service.clear()">נקה הכול</button>
+</section>
